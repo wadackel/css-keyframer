@@ -29,6 +29,6 @@ export function indent(str, size) {
   const eol = "\n";
 
   return str.split(eol).map(line =>
-    new Array(size + 1).join(" ") + line
+    strRepeat(" ", size) + line
   ).join(eol);
 }
