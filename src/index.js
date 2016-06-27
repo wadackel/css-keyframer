@@ -23,7 +23,7 @@ export default class CssKeyframer {
     const el = getStyleElement(styleDataName, prefixedName);
     const keyframeString = makeKeyframes(prefixedName, keyframe, pretty);
 
-    if (el == null) return;
+    if (el == null || keyframeString == null) return;
 
     el.innerHTML = keyframeString;
 

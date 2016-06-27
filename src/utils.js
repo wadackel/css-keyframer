@@ -1,11 +1,20 @@
 import isPlainObject from "is-plain-object";
 
-export function each(obj, iterate) {
-  if (!isPlainObject(obj)) return obj;
+export function isArrayLike(obj) {
+  return isPlainObject(obj) || Array.isArray(obj);
+}
 
-  for (const key in obj) {
-    if (!obj.hasOwnProperty(key)) continue;
-    if (iterate.call(obj, obj[key], key) === false) break;
+export function each(obj, iterate) {
+  if (Array.isArray(obj)) {
+    for (let i = 0; i < obj.length; i++) {
+      if (iterate.call(obj, obj[i], i) === false) break;
+    }
+
+  } else if (isPlainObject(obj)) {
+    for (const key in obj) {
+      if (!obj.hasOwnProperty(key)) continue;
+      if (iterate.call(obj, obj[key], key) === false) break;
+    }
   }
 }
 

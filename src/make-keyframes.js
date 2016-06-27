@@ -1,6 +1,5 @@
-import isPlainObject from "is-plain-object";
 import cssVendor from "css-vendor/dist/css-vendor";
-import { each, indent } from "./utils";
+import { isArrayLike, each, indent } from "./utils";
 import makeStyle from "./make-style";
 
 function getKeyframesPrefix() {
@@ -10,14 +9,28 @@ function getKeyframesPrefix() {
 }
 
 export default function makeKeyframes(name, props, pretty = false) {
-  if (!name || !isPlainObject(props)) return null;
+  if (!name || !isArrayLike(props)) return null;
 
   const eol = "\n";
   const prefix = getKeyframesPrefix();
   const styles = [];
 
   each(props, (values, selector) => {
-    const styleString = makeStyle(selector, values, pretty);
+    let selectorString = selector;
+
+    if (typeof selector === "number") {
+      const maxIndex = props.length - 1;
+
+      if (selector === 0) {
+        selectorString = "0%";
+      } else if (selector === maxIndex) {
+        selectorString = "100%";
+      } else {
+        selectorString = `${selector / maxIndex * 100}%`;
+      }
+    }
+
+    const styleString = makeStyle(selectorString, values, pretty);
     styles.push(styleString);
   });
 
