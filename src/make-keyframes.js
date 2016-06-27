@@ -9,20 +9,25 @@ function getKeyframesPrefix() {
   return animation === "animation" ? "" : animation.replace("animation");
 }
 
-export default function makeKeyframes(name, props) {
+export default function makeKeyframes(name, props, pretty = false) {
   if (!name || !isPlainObject(props)) return null;
 
+  const eol = "\n";
   const prefix = getKeyframesPrefix();
   const styles = [];
 
   each(props, (values, selector) => {
-    const styleString = makeStyle(selector, values);
+    const styleString = makeStyle(selector, values, pretty);
     styles.push(styleString);
   });
 
-  return [
-    `@${prefix}keyframes ${name} {`,
-    indent(styles.join("\n\n"), 2),
-    `}`
-  ].join("\n");
+  if (pretty) {
+    return [
+      `@${prefix}keyframes ${name} {`,
+      indent(styles.join(eol + eol), 2),
+      "}"
+    ].join(eol);
+  }
+
+  return `@${prefix}keyframes ${name}{${styles.join("")}}`;
 }

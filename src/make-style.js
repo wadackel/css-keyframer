@@ -1,9 +1,9 @@
 import isPlainObject from "is-plain-object";
 import paramCase from "param-case";
 import cssVendor from "css-vendor/dist/css-vendor";
-import { each } from "./utils";
+import { each, indent } from "./utils";
 
-export default function makeStyle(selector, props) {
+export default function makeStyle(selector, props, pretty = false) {
   if (!selector || !isPlainObject(props)) {
     return null;
   }
@@ -12,8 +12,12 @@ export default function makeStyle(selector, props) {
 
   each(props, (value, key) => {
     const prop = cssVendor.supportedProperty(paramCase(key));
-    styles.push(`  ${prop}: ${value};`);
+    styles.push(`${prop}: ${value};`);
   });
 
-  return `${selector} {\n${styles.join("\n")}\n}`;
+  if (pretty) {
+    return `${selector} {\n${indent(styles.join("\n"), 2)}\n}`;
+  }
+
+  return `${selector}{${styles.join("")}}`;
 }

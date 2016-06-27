@@ -1,37 +1,27 @@
 import assign from "object-assign";
 import makeKeyframes from "./make-keyframes";
-
-const IS_SERVER_SIDE = typeof document === "undefined";
-const ATTR_NAME = "data-keyframe-name";
-
-
-function getStyleElement(name) {
-  if (IS_SERVER_SIDE) return null;
-
-  const el = document.querySelector(`style[${ATTR_NAME}="${name}"]`);
-
-  if (el) return el;
-
-  const style = document.createElement("style");
-  style.setAttribute(ATTR_NAME, name);
-
-  document.getElementsByTagName("head")[0].appendChild(style);
-
-  return style;
-}
+import getStyleElement from "./get-style-element";
 
 
 export default class CssKeyframer {
-  constructor(options) {
+  static defaults = {
+    namePrefix: "",
+    styleDataName: "data-keyframe",
+    pretty: false
+  };
+
+  constructor(options = {}) {
     this.keyframes = {};
-    // TODO: options
+    this.options = assign({}, CssKeyframer.defaults, options);
   }
 
   register(name, keyframe) {
     this.unregister(name);
 
-    const el = getStyleElement(name);
-    const keyframeString = makeKeyframes(name, keyframe);
+    const { namePrefix, styleDataName, pretty } = this.options;
+    const prefixedName = namePrefix + name;
+    const el = getStyleElement(styleDataName, prefixedName);
+    const keyframeString = makeKeyframes(prefixedName, keyframe, pretty);
 
     if (el == null) return;
 
