@@ -1,7 +1,7 @@
 import isPlainObject from "is-plain-object";
 import paramCase from "param-case";
 import cssVendor from "css-vendor/dist/css-vendor";
-import each from "./each";
+import { each } from "./utils";
 
 export default function makeStyle(selector, props) {
   if (!selector || !isPlainObject(props)) {

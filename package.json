@@ -25,6 +25,8 @@
   "license": "MIT",
   "dependencies": {
     "css-vendor": "^0.3.4",
+    "is-plain-object": "^2.0.1",
+    "object-assign": "^4.1.0",
     "param-case": "^2.1.0"
   },
   "devDependencies": {

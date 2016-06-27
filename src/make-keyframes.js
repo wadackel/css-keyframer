@@ -1,6 +1,6 @@
 import isPlainObject from "is-plain-object";
 import cssVendor from "css-vendor/dist/css-vendor";
-import each from "./each";
+import { each, indent } from "./utils";
 import makeStyle from "./make-style";
 
 function getKeyframesPrefix() {
@@ -20,5 +20,9 @@ export default function makeKeyframes(name, props) {
     styles.push(styleString);
   });
 
-  return `@${prefix}keyframes ${name} {\n${styles.join("\n\n")}\n}`;
+  return [
+    `@${prefix}keyframes ${name} {`,
+    indent(styles.join("\n\n"), 2),
+    `}`
+  ].join("\n");
 }
