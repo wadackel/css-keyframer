@@ -33,7 +33,7 @@ export default class CssKeyframer {
   unregister(name) {
     if (this.contains(name)) {
       const el = this.keyframes[name];
-      el.parentNode.removeChild(el)
+      el.parentNode.removeChild(el);
       delete this.keyframes[name];
     }
   }

@@ -10,13 +10,15 @@ export function each(obj, iterate) {
 }
 
 // http://hg.mozilla.org/mozilla-central/diff/7c3cb4883157/js/src/builtin/String.js
-export function strRepeat(str, n){
+export function strRepeat(str, repeatCount) {
+  let s = str;
+  let n = repeatCount;
   let result = "";
 
-  for( ;; ){
-    if( n & 1 ) result += str;
+  for (;;) {
+    if (n & 1) result += str;
     n >>= 1;
-    if( n ) str += str;
+    if (n) s += str;
     else break;
   }
 
