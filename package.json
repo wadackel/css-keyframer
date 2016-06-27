@@ -24,7 +24,8 @@
   "author": "tsuyoshiwada",
   "license": "MIT",
   "dependencies": {
-    "css-vendor": "^0.3.4"
+    "css-vendor": "^0.3.4",
+    "param-case": "^2.1.0"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.9.0",
