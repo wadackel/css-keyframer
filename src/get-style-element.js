@@ -10,7 +10,7 @@ function findStyleElement(dataName, name) {
 function createStyleElement(dataName, name) {
   const el = document.createElement("style");
   el.setAttribute(dataName, name);
-  document.getElementsByTagName("head")[0].appendChild(el);
+  document.head.appendChild(el);
 
   return el;
 }
