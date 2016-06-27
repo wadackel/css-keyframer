@@ -25,9 +25,9 @@ export function strRepeat(str, repeatCount) {
   let result = "";
 
   for (;;) {
-    if (n & 1) result += str;
+    if (n & 1) result += s;
     n >>= 1;
-    if (n) s += str;
+    if (n) s += s;
     else break;
   }
 
