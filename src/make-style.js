@@ -12,6 +12,7 @@ export default function makeStyle(selector, props, pretty = false) {
 
   each(props, (value, key) => {
     const prop = cssVendor.supportedProperty(paramCase(key));
+    if (prop === false) return false;
     styles.push(`${prop}: ${value};`);
   });
 
