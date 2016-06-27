@@ -3,7 +3,7 @@ import makeKeyframes from "./make-keyframes";
 import getStyleElement from "./get-style-element";
 
 
-export default class CssKeyframer {
+export default class CSSKeyframer {
   static defaults = {
     namePrefix: "",
     styleDataName: "data-keyframe",
@@ -12,7 +12,7 @@ export default class CssKeyframer {
 
   constructor(options = {}) {
     this.keyframes = {};
-    this.options = assign({}, CssKeyframer.defaults, options);
+    this.options = assign({}, CSSKeyframer.defaults, options);
   }
 
   register(name, keyframe) {
@@ -45,7 +45,7 @@ export default class CssKeyframer {
 
 
 // // =======================
-// const keyframer = new CssKeyframer({
+// const keyframer = new CSSKeyframer({
 //   pretty: true
 // });
 //

@@ -1,8 +1,8 @@
 import assert from "power-assert";
-import CssKeyframer from "../src/";
+import CSSKeyframer from "../src/";
 
 
-describe("CssKeyframer", () => {
+describe("CSSKeyframer", () => {
   beforeEach(() => {
     document.head.innerHTML = "";
   });
@@ -13,7 +13,7 @@ describe("CssKeyframer", () => {
 
   describe("register()", () => {
     it("Should be regsiter keyframes", () => {
-      const keyframer = new CssKeyframer();
+      const keyframer = new CSSKeyframer();
       keyframer.register("hoge", {
         from: { color: "#fff" },
         to: { color: "#000" }
@@ -26,7 +26,7 @@ describe("CssKeyframer", () => {
 
   describe("unregister()", () => {
     it("Should be unregister keyframes", () => {
-      const keyframer = new CssKeyframer();
+      const keyframer = new CSSKeyframer();
       keyframer.register("fuga", {
         from: { color: "#fff" },
         to: { color: "#000" }
