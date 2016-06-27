@@ -26,6 +26,8 @@ export default {
     commonjs({
       include: "node_modules/**"
     }),
-    babel()
+    babel({
+      exclude: "node_modules/**"
+    })
   ]
 }
