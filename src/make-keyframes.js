@@ -5,11 +5,11 @@ import makeStyle from "./make-style";
 function getKeyframesPrefix() {
   const animation = cssVendor.supportedProperty("animation");
 
-  return animation === "animation" ? "" : animation.replace("animation");
+  return animation.replace("animation", "");
 }
 
 export default function makeKeyframes(name, props, pretty = false) {
-  if (!name || !isArrayLike(props)) return null;
+  if (!name || (name && name.trim() === "") || !isArrayLike(props)) return null;
 
   const eol = "\n";
   const prefix = getKeyframesPrefix();

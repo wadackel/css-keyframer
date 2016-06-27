@@ -5,13 +5,15 @@ import makeStyle from "../src/make-style";
 
 describe("makeStyle()", () => {
   it("Should not be make style string", () => {
-    assert(makeStyle() == null);
     assert(makeStyle("") == null);
-    assert(makeStyle(null) == null);
-    assert(makeStyle(undefined) == null);
-    assert(makeStyle(0) == null);
-    assert(makeStyle(123) == null);
-    assert(makeStyle([]) == null);
+    assert(makeStyle(" ") == null);
+    assert(makeStyle(".hoge") == null);
+    assert(makeStyle(".hoge", "") == null);
+    assert(makeStyle(".hoge", null) == null);
+    assert(makeStyle(".hoge", undefined) == null);
+    assert(makeStyle(".hoge", 0) == null);
+    assert(makeStyle(".hoge", 123) == null);
+    assert(makeStyle(".hoge") == null);
   });
 
   it("Should be make style string", () => {
