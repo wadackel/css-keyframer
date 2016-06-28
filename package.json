@@ -1,7 +1,7 @@
 {
   "name": "css-keyframer",
   "version": "0.0.1",
-  "description": "",
+  "description": "Dynamic css animation keyframes Manipulation library.",
   "main": "css-keyframer.js",
   "scripts": {
     "start": "npm run watch & npm run demo",
@@ -18,7 +18,12 @@
     "demo:watch": "onchange 'css-keyframer.js' -- npm run demo:build",
     "demo:build": "copyfiles css-keyframer.js demo/"
   },
-  "keywords": [],
+  "keywords": [
+    "css",
+    "animation",
+    "keyframes",
+    "css-keyframer"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/tsuyoshiwada/css-keyframer.git"

@@ -11,10 +11,11 @@ export default class CSSKeyframer {
     pretty: false
   };
 
+  static animationPrefix = getAnimationPrefix();
+
   constructor(options = {}) {
     this.keyframes = {};
     this.options = assign({}, CSSKeyframer.defaults, options);
-    this.animationPrefix = getAnimationPrefix();
   }
 
   register(name, keyframe) {

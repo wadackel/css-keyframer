@@ -918,7 +918,6 @@
 
 	    this.keyframes = {};
 	    this.options = assign({}, CSSKeyframer.defaults, options);
-	    this.animationPrefix = getAnimationPrefix();
 	  }
 
 	  createClass(CSSKeyframer, [{
@@ -965,6 +964,7 @@
 	  styleDataName: "data-keyframe",
 	  pretty: false
 	};
+	CSSKeyframer.animationPrefix = getAnimationPrefix();
 
 	return CSSKeyframer;
 
