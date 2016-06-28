@@ -20,10 +20,11 @@ export default class CSSKeyframer {
 
     const { namePrefix, styleDataName, pretty } = this.options;
     const prefixedName = namePrefix + name;
-    const el = getStyleElement(styleDataName, prefixedName);
     const keyframeString = makeKeyframes(prefixedName, keyframe, pretty);
+    if (keyframeString == null) return;
 
-    if (el == null || keyframeString == null) return;
+    const el = getStyleElement(styleDataName, prefixedName);
+    if (el == null) return;
 
     el.innerHTML = keyframeString;
 
@@ -42,38 +43,3 @@ export default class CSSKeyframer {
     return this.keyframes.hasOwnProperty(name);
   }
 }
-
-
-// // =======================
-// const keyframer = new CSSKeyframer({
-//   pretty: true
-// });
-//
-// keyframer.register("spin", [
-//   {
-//     transform: "translate(0, 0)",
-//     borderRadius: 0
-//   },
-//   {
-//     transform: "translate(1px, 1px)",
-//     borderRadius: "50%"
-//   },
-//   {
-//     transform: "translate(2px, 5px)",
-//     borderRadius: "50%"
-//   },
-//   {
-//     transform: "translate(0, 0)",
-//     "border-radius": 0
-//   }
-// ]);
-//
-//
-//
-// import makeStyle from "./make-style";
-// const s = makeStyle(".fuga", {
-//   width: "50px",
-//   height: "50px",
-//   "border-radius": "20%"
-// }, true);
-// console.log(s);
