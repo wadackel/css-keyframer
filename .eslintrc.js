@@ -14,10 +14,7 @@ module.exports = {
     "node": true,
     "mocha": true
   },
-  "plugins": [
-    "react"
-  ],
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "extends": ["eslint:recommended"],
   "rules": {
     // Possible Errors
     "comma-dangle": "error",
@@ -158,12 +155,6 @@ module.exports = {
     "prefer-rest-params": "error",
     "prefer-spread": "error",
     "prefer-template": "error",
-    "template-curly-spacing": "error",
-
-    // React
-    "react/jsx-uses-vars": "error",
-    "react/no-is-mounted": "error",
-    "react/prop-types": "warn",
-    "react/jsx-curly-spacing": "error"
+    "template-curly-spacing": "error"
   }
 };
