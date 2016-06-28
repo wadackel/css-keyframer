@@ -207,19 +207,13 @@ pre {
   margin: 0 auto;
   overflow: hidden;
   border-radius: 0;
-  -webkit-transform: rotate(0);
-  -webkit-animation: spin 1500ms infinite;
-          animation: spin 1500ms infinite;
 }
 
-.element::after {
+.element__inner {
   position: absolute;
   top: 0;
   left: 0;
   display: block;
   width: 100%;
   height: 100%;
-  content: "";
-  -webkit-animation: colors 4000ms infinite;
-          animation: colors 4000ms infinite;
 }

@@ -1,7 +1,7 @@
 import assign from "object-assign";
 import makeKeyframes from "./make-keyframes";
 import getStyleElement from "./get-style-element";
-import getAnimationPrefix from "./get-animation-prefix";
+import getAnimationProp from "./get-animation-prop";
 
 
 export default class CSSKeyframer {
@@ -11,7 +11,7 @@ export default class CSSKeyframer {
     pretty: false
   };
 
-  static animationPrefix = getAnimationPrefix();
+  static animationProp = getAnimationProp();
 
   constructor(options = {}) {
     this.keyframes = {};

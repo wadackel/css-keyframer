@@ -1,12 +1,12 @@
 import { isArrayLike, each, indent } from "./utils";
 import makeStyle from "./make-style";
-import getAnimationPrefix from "./get-animation-prefix";
+import getAnimationProp from "./get-animation-prop";
 
 export default function makeKeyframes(name, props, pretty = false) {
   if (!name || (name && name.trim() === "") || !isArrayLike(props)) return null;
 
   const eol = "\n";
-  const prefix = getAnimationPrefix().css;
+  const prefix = getAnimationProp().css.replace("animation", "");
   const styles = [];
 
   each(props, (values, selector) => {

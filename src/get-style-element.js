@@ -9,6 +9,7 @@ function findStyleElement(dataName, name) {
 
 function createStyleElement(dataName, name) {
   const el = document.createElement("style");
+  el.type = "text/css";
   el.setAttribute(dataName, name);
   document.head.appendChild(el);
 
