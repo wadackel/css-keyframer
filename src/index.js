@@ -1,6 +1,7 @@
 import assign from "object-assign";
 import makeKeyframes from "./make-keyframes";
 import getStyleElement from "./get-style-element";
+import getAnimationPrefix from "./get-animation-prefix";
 
 
 export default class CSSKeyframer {
@@ -13,6 +14,7 @@ export default class CSSKeyframer {
   constructor(options = {}) {
     this.keyframes = {};
     this.options = assign({}, CSSKeyframer.defaults, options);
+    this.animationPrefix = getAnimationPrefix();
   }
 
   register(name, keyframe) {
