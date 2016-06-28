@@ -1,7 +1,7 @@
 
 /*!
  * css-keyframer
- * 
+ * Dynamic css animation keyframes Manipulation library.
  *
  * @author tsuyoshiwada
  * @license MIT
@@ -814,13 +814,13 @@
 
 	var pascalCase$1 = (pascalCase && typeof pascalCase === 'object' && 'default' in pascalCase ? pascalCase['default'] : pascalCase);
 
-	function getAnimationPrefix() {
+	function getAnimationProp() {
 	  var animation = cssVendor$1.supportedProperty("animation");
 	  var prefix = animation.replace("animation", "");
 
 	  return {
-	    css: prefix,
-	    js: pascalCase$1(prefix)
+	    css: animation,
+	    js: prefix === "" ? animation : pascalCase$1(animation)
 	  };
 	}
 
@@ -830,7 +830,7 @@
 	  if (!name || name && name.trim() === "" || !isArrayLike(props)) return null;
 
 	  var eol = "\n";
-	  var prefix = getAnimationPrefix().css;
+	  var prefix = getAnimationProp().css.replace("animation", "");
 	  var styles = [];
 
 	  each(props, function (values, selector) {
@@ -869,6 +869,7 @@
 
 	function createStyleElement(dataName, name) {
 	  var el = document.createElement("style");
+	  el.type = "text/css";
 	  el.setAttribute(dataName, name);
 	  document.head.appendChild(el);
 
@@ -964,7 +965,7 @@
 	  styleDataName: "data-keyframe",
 	  pretty: false
 	};
-	CSSKeyframer.animationPrefix = getAnimationPrefix();
+	CSSKeyframer.animationProp = getAnimationProp();
 
 	return CSSKeyframer;
 
