@@ -11,6 +11,32 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  
+  <div class="element"></div>
+  <script src="./css-keyframer.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var keyframer = new CSSKeyframer();
+
+      keyframer.register("spin", [
+        { transform: "rotate(0deg) translate(0, 0)", borderRadius: "0" },
+        { transform: "rotate(72deg) translate(-5px, -5px)", borderRadius: "50%" },
+        { transform: "rotate(144deg) translate(0, 0)", borderRadius: "0" },
+        { transform: "rotate(216deg) translate(5px, 5px)", borderRadius: "50%" },
+        { transform: "rotate(360deg) translate(0, 0)", borderRadius: "0" }
+      ]);
+
+      keyframer.register("colors", [
+        { backgroundColor: "#e53935" },
+        { backgroundColor: "#ad1457" },
+        { backgroundColor: "#3f51b5" },
+        { backgroundColor: "#0097a7" },
+        { backgroundColor: "#00897b" },
+        { backgroundColor: "#7cb342" },
+        { backgroundColor: "#ffeb3b" },
+        { backgroundColor: "#ff9800" },
+        { backgroundColor: "#ff5722" },
+      ]);
+    }, false);
+  </script>
 </body>
 </html>

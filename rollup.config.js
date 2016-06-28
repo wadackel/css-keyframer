@@ -16,7 +16,7 @@ const banner = `
 
 export default {
   banner,
-  moduleName: "CssKeyframer",
+  moduleName: "CSSKeyframer",
   format: "umd",
   plugins: [
     nodeResolve({

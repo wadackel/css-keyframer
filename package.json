@@ -4,15 +4,19 @@
   "description": "",
   "main": "css-keyframer.js",
   "scripts": {
-    "start": "npm run watch",
+    "start": "npm run watch & npm run demo",
     "test": "npm run lint && npm run karma",
-    "build": "npm run build:js",
+    "build": "npm run build:js npm run demo:build",
     "build:js": "NODE_ENV=production rollup -i src/index.js -o css-keyframer.js -c && uglifyjs --compress --mangle -o css-keyframer.min.js --comments -- css-keyframer.js",
     "watch": "npm run watch:js & npm run watch:test",
     "watch:js": "onchange 'src/**/*.js' -- npm run build:js",
     "watch:test": "onchange 'test/**/*.js' -- npm run karma",
     "lint": "eslint src/**/*.js .eslintrc.js --no-ignore",
-    "karma": "NODE_ENV=test karma start karma.conf.js --single-run"
+    "karma": "NODE_ENV=test karma start karma.conf.js --single-run",
+    "demo": "npm run demo:server & npm run demo:watch",
+    "demo:server": "browser-sync start -s 'demo' -f 'demo/**/*.html, demo/**/*.css, demo/**/*.js' --no-notify --no-open --no-ghost-mode",
+    "demo:watch": "onchange 'css-keyframer.js' -- npm run demo:build",
+    "demo:build": "copyfiles css-keyframer.js demo/"
   },
   "keywords": [],
   "repository": {
@@ -38,7 +42,9 @@
     "babel-preset-es2015-rollup": "^1.1.1",
     "babel-preset-stage-0": "^6.5.0",
     "babelify": "^7.3.0",
+    "browser-sync": "^2.13.0",
     "browserify": "^13.0.1",
+    "copyfiles": "^1.0.0",
     "eslint": "^2.13.1",
     "eslint-plugin-react": "^5.2.2",
     "karma": "^1.1.0",
