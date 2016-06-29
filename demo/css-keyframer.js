@@ -952,6 +952,15 @@
 	      }
 	    }
 	  }, {
+	    key: "unregisterAll",
+	    value: function unregisterAll() {
+	      var _this = this;
+
+	      each(this.keyframes, function (el, name) {
+	        return _this.unregister(name);
+	      });
+	    }
+	  }, {
 	    key: "contains",
 	    value: function contains(name) {
 	      return this.keyframes.hasOwnProperty(name);

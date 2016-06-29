@@ -2,6 +2,7 @@ import assign from "object-assign";
 import makeKeyframes from "./make-keyframes";
 import getStyleElement from "./get-style-element";
 import getAnimationProp from "./get-animation-prop";
+import { each } from "./utils";
 
 
 export default class CSSKeyframer {
@@ -40,6 +41,10 @@ export default class CSSKeyframer {
       el.parentNode.removeChild(el);
       delete this.keyframes[name];
     }
+  }
+
+  unregisterAll() {
+    each(this.keyframes, (el, name) => this.unregister(name));
   }
 
   contains(name) {
