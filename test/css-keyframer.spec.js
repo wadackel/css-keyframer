@@ -27,6 +27,16 @@ describe("CSSKeyframer", () => {
       assert(style.innerHTML === "@-webkit-keyframes hoge{from{color: #fff;}to{color: #000;}}");
     });
 
+    it("Should be update already registered keyframes", () => {
+      const keyframer = new CSSKeyframer();
+
+      keyframer.register("hoge", { from: { color: "#000" } });
+      assert($("style[data-keyframe='hoge']").innerHTML === "@-webkit-keyframes hoge{from{color: #000;}}");
+
+      keyframer.register("hoge", { from: { color: "#fff" } });
+      assert($("style[data-keyframe='hoge']").innerHTML === "@-webkit-keyframes hoge{from{color: #fff;}}");
+    });
+
     it("Should not be regsiter keyframes", () => {
       const keyframer = new CSSKeyframer({ pretty: true });
       keyframer.register("", null);
@@ -95,6 +105,28 @@ describe("CSSKeyframer", () => {
       assert(!!$("style[data-test-name='hoge']") === true);
       keyframer.unregister("hoge");
       assert($("style[data-test-name='hoge']") == null);
+    });
+  });
+
+  describe("unregisterAll()", () => {
+    it("Should be unregister all keyframes", () => {
+      const keyframer = new CSSKeyframer();
+      keyframer.register("hoge", { to: { color: "#fff" } });
+      keyframer.register("fuga", { to: { color: "#ff0" } });
+      keyframer.register("piyo", { to: { color: "#f00" } });
+      keyframer.register("hogera", { to: { color: "#000" } });
+
+      assert(!!$("style[data-keyframe='hoge']") === true);
+      assert(!!$("style[data-keyframe='fuga']") === true);
+      assert(!!$("style[data-keyframe='piyo']") === true);
+      assert(!!$("style[data-keyframe='hogera']") === true);
+
+      keyframer.unregisterAll();
+
+      assert($("style[data-keyframe='hoge']") == null);
+      assert($("style[data-keyframe='fuga']") == null);
+      assert($("style[data-keyframe='piyo']") == null);
+      assert($("style[data-keyframe='hogera']") == null);
     });
   });
 });
