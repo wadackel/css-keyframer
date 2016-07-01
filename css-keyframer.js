@@ -815,7 +815,8 @@
 	var pascalCase$1 = (pascalCase && typeof pascalCase === 'object' && 'default' in pascalCase ? pascalCase['default'] : pascalCase);
 
 	function getAnimationProp() {
-	  var animation = cssVendor$1.supportedProperty("animation");
+	  var prop = "animation";
+	  var animation = cssVendor$1.supportedProperty(prop) || prop;
 	  var prefix = animation.replace("animation", "");
 
 	  return {
