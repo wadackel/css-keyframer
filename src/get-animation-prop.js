@@ -2,7 +2,8 @@ import pascalCase from "pascal-case";
 import cssVendor from "css-vendor/dist/css-vendor";
 
 export default function getAnimationProp() {
-  const animation = cssVendor.supportedProperty("animation");
+  const prop = "animation";
+  const animation = cssVendor.supportedProperty(prop) || prop;
   const prefix = animation.replace("animation", "");
 
   return {
