@@ -19,15 +19,29 @@ export default class CSSKeyframer {
     this.options = assign({}, CSSKeyframer.defaults, options);
   }
 
+  getPrefixedName(name) {
+    return this.options.namePrefix + name;
+  }
+
+  getKeyframeString(name, keyframe) {
+    return makeKeyframes(this.getPrefixedName(name), keyframe, this.options.pretty);
+  }
+
+  getKeyframeStylesheet(name, keyframe) {
+    const { styleDataName } = this.options;
+    const keyframeString = this.getKeyframeString(name, keyframe);
+
+    return keyframeString == null ? "" : `<style type="text/css" ${styleDataName}="${name}">${keyframeString}</style>`;
+  }
+
   register(name, keyframe) {
     this.unregister(name);
 
-    const { namePrefix, styleDataName, pretty } = this.options;
-    const prefixedName = namePrefix + name;
-    const keyframeString = makeKeyframes(prefixedName, keyframe, pretty);
+    const { styleDataName } = this.options;
+    const keyframeString = this.getKeyframeString(name, keyframe);
     if (keyframeString == null) return;
 
-    const el = getStyleElement(styleDataName, prefixedName);
+    const el = getStyleElement(styleDataName, this.getPrefixedName(name));
     if (el == null) return;
 
     el.innerHTML = keyframeString;

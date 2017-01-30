@@ -1,5 +1,5 @@
 import pascalCase from "pascal-case";
-import cssVendor from "css-vendor/dist/css-vendor";
+import cssVendor from "css-vendor";
 
 export default function getAnimationProp() {
   const prop = "animation";

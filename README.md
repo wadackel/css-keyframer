@@ -73,6 +73,36 @@ To the constructor of `CSSKeyframer` You can specify the following options.
 
 ## API
 
+### getKeyframeStylesheet(name: string, keyframe: object | array): string
+
+Get a style element containing a keyframe as a string.  
+It is an API that you do not normally use. But, this is a useful API for Server-side Rendering.
+
+```javascript
+keyframer.getKeyframeStylesheet("spin", {
+  "0%": { transform: "rotate(0deg)" },
+  "100%": { transform: "rotate(360deg)" }
+});
+
+// Array style
+keyframer.getKeyframeStylesheet("spin", [
+  { transform: "rotate(0deg)" },
+  { transform: "rotate(360deg)" }
+]);
+
+// Result (pretty: true)
+// <style type="text/css" data-keyframe="spin">@keyframes spin {
+//   0% {
+//     transform: rotate(0deg);
+//   }
+//   100% {
+//     transform: rotate(360deg);
+//   }
+// }</style>
+```
+
+
+
 ### register(name: string, keyframe: object | array): void
 
 Register the `@keyframes`.  

@@ -1,6 +1,6 @@
 import isPlainObject from "is-plain-object";
 import paramCase from "param-case";
-import cssVendor from "css-vendor/dist/css-vendor";
+import cssVendor from "css-vendor";
 import { each, indent } from "./utils";
 
 export default function makeStyle(selector, props, pretty = false) {

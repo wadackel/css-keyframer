@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import assert from "power-assert";
 import CSSKeyframer from "../src/";
 
@@ -13,6 +14,23 @@ describe("CSSKeyframer", () => {
 
   afterEach(() => {
     document.head.innerHTML = "";
+  });
+
+  describe("getKeyframeStylesheet()", () => {
+    it("Should be get keyframe stylesheet strings", () => {
+      const keyframer = new CSSKeyframer();
+      const keyframe = {
+        from: { backgroundColor: "#000" },
+        to: { backgroundColor: "#fff" }
+      };
+
+      assert(keyframer.getKeyframeStylesheet("fuga", keyframe) === "<style type=\"text/css\" data-keyframe=\"fuga\">@-webkit-keyframes fuga{from{background-color: #000;}to{background-color: #fff;}}</style>");
+    });
+
+    it("Should be return empty string when passed invalid arguments", () => {
+      const keyframer = new CSSKeyframer();
+      assert(keyframer.getKeyframeStylesheet("fuga", null) === "");
+    });
   });
 
   describe("register()", () => {
