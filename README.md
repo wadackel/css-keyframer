@@ -4,8 +4,6 @@
 [![Build Status](http://img.shields.io/travis/tsuyoshiwada/css-keyframer.svg?style=flat-square)](https://travis-ci.org/tsuyoshiwada/css-keyframer)
 [![npm version](https://img.shields.io/npm/v/css-keyframer.svg?style=flat-square)](http://badge.fury.io/js/css-keyframer)
 [![David](https://img.shields.io/david/tsuyoshiwada/css-keyframer.svg?style=flat-square)](https://david-dm.org/tsuyoshiwada/css-keyframer/)
-[![David - dev](https://img.shields.io/david/dev/tsuyoshiwada/css-keyframer.svg?style=flat-square)](https://david-dm.org/tsuyoshiwada/css-keyframer/#info=devDependencies&view=table)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/tsuyoshiwada/css-keyframer/master/LICENSE)
 
 Dynamic css animation keyframes Manipulation library.
 
@@ -49,7 +47,7 @@ In the following example, to apply the spin animation to `div.element`.
 ```javascript
 import CSSKeyframer, { animationProp } from "css-keyframer";
 
-const keyframer = new CSSKeyframer(/* options */);
+const keyframer = new CSSKeyframer({ /* options */ });
 
 // CSS property will be added vendor-prefix is automatically!
 keyframer.register("spin", [
@@ -73,7 +71,7 @@ To the constructor of `CSSKeyframer` You can specify the following options.
 
 ## API
 
-### getKeyframeStylesheet(name: string, keyframe: object | array): string
+### getKeyframeStylesheet(name: string, keyframe: Object | Array): string
 
 Get a style element containing a keyframe as a string.  
 It is an API that you do not normally use. But, this is a useful API for Server-side Rendering.
@@ -103,7 +101,7 @@ keyframer.getKeyframeStylesheet("spin", [
 
 
 
-### register(name: string, keyframe: object | array): void
+### register(name: string, keyframe: Object | Array): void
 
 Register the `@keyframes`.  
 If `@keyframes` of the same name exists overwrites it.
