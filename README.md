@@ -10,21 +10,22 @@ Dynamic css animation keyframes Manipulation library.
 See demo page: https://tsuyoshiwada.github.io/css-keyframer/
 
 
-## DESCRIPTION
+
+## Description
 
 css-keyframer.js provides a Low-level API that add to the head element dynamically generates a style element.  
 Therefore, linking to the DOM element must be handled by the user side.
 
 
 
-## WHY?
+### WHY?
 
 When you want to apply the same animation to multiple elements, it is inefficient to update the in-line style of all the elements.  
 If you reuse one of `@keyframes` it can be realized efficient animation.
 
 
 
-## INSTALL
+## Install
 
 You can install the [css-keyframer.js](https://www.npmjs.com/package/css-keyframer) from [npm](https://www.npmjs.com/).
 
@@ -36,7 +37,7 @@ or Download the [css-keyframer.min.js](https://raw.githubusercontent.com/tsuyosh
 
 
 
-## BASIC USAGE
+## Getting started
 
 In the following example, to apply the spin animation to `div.element`.
 
@@ -45,7 +46,7 @@ In the following example, to apply the spin animation to `div.element`.
 ```
 
 ```javascript
-import CSSKeyframer, { animationProp } from "css-keyframer";
+import CSSKeyframer from "css-keyframer";
 
 const keyframer = new CSSKeyframer({ /* options */ });
 
@@ -55,23 +56,58 @@ keyframer.register("spin", [
   { transform: "rotate(360deg)" }
 ]);
 
-document.querySelector(".element").style[animationProp.js] = "spin 1500ms linear infinite";
+document.querySelector(".element").style[keyframer.animationProp.js] = "spin 1500ms linear infinite";
 ```
 
 
-## OPTIONS
+### Options
 
 To the constructor of `CSSKeyframer` You can specify the following options.
 
-* `namePrefix` (default: `""`) - Grant prefix to `@keyframes`.
-* `styleDataName` (default: `"data-keyframe"`) - To specify the attributes to be used in the style element.
-* `pretty` (default: `false`) - Output pretty code `@keyframes`. Primarily used for debugging applications.
+| Key             | Default            | Description                                                                                                                   |
+|:----------------|:-------------------|:------------------------------------------------------------------------------------------------------------------------------|
+| `namePrefix`    | `""`               | Grant prefix to `@keyframes`.                                                                                                 |
+| `styleDataName` | `"data-keyframes"` | To specify the attributes to be used in the style element.                                                                    |
+| `pretty`        | `false`            | Output pretty code `@keyframes`. Primarily used for debugging applications.                                                   |
+| `useAgent`      | `null`             | Specify the UserAgent to be used for inline-style-prefixer. When set to `null`, it is judged automatically. **since: v1.0.0** |
 
 
 
 ## API
 
+### getKeyframesString(name: string, keyframe: Object | Array): string
+
+**since: v1.0.0**
+
+Get CSS string containing the keyframes.
+
+```javascript
+keyframer.getKeyframesString("spin", {
+  "0%": { transform: "rotate(0deg)" },
+  "100%": { transform: "rotate(360deg)" }
+});
+
+// or Array style
+keyframer.getKeyframesString("spin", [
+  { transform: "rotate(0deg)" },
+  { transform: "rotate(360deg)" }
+]);
+
+// Result (pretty: true)
+// @keyframes spin {
+//   0% {
+//     transform: rotate(0deg);
+//   }
+//   100% {
+//     transform: rotate(360deg);
+//   }
+// }
+```
+
+
 ### getKeyframeStylesheet(name: string, keyframe: Object | Array): string
+
+**since: v1.0.0**
 
 Get a style element containing a keyframe as a string.  
 It is an API that you do not normally use. But, this is a useful API for Server-side Rendering.
@@ -82,7 +118,7 @@ keyframer.getKeyframeStylesheet("spin", {
   "100%": { transform: "rotate(360deg)" }
 });
 
-// Array style
+// or Array style
 keyframer.getKeyframeStylesheet("spin", [
   { transform: "rotate(0deg)" },
   { transform: "rotate(360deg)" }
@@ -115,7 +151,7 @@ keyframer.register("spin", {
   "100%": { transform: "rotate(360deg)" }
 });
 
-// Array style
+// or Array style
 keyframer.register("spin", [
   { transform: "rotate(0deg)" },
   { transform: "rotate(360deg)" }
@@ -164,14 +200,16 @@ Check whether the specified @keyframes exists.
 keyframer.contains("spin"); // true or false
 ```
 
-### CSSKeyframer.animationProp
+### animationProp: { js: string, css: string }
+
+**since: v1.0.0**
 
 It provides the name of the property required for the animation of the set with a vendor prefix. (CSS and JS)
 
 **Example:**
 
 ```javascript
-import CSSKeyframer, { animationProp } from "css-keyframer";
+import CSSKeyframer from "css-keyframer";
 
 const keyframer = new CSSKeyframer();
 keyframer.register("spin", [
@@ -179,23 +217,30 @@ keyframer.register("spin", [
   { transform: "rotate(360deg)" }
 ]);
 
-document.querySelector(".target").style[animationProp.js] = "spin 1500ms linear infinite";
+document.querySelector(".target").style[keyframer.animationProp.js] = "spin 1500ms linear infinite";
 ```
 
 
-## LICENCE
 
-Released under the [MIT Licence](https://raw.githubusercontent.com/tsuyoshiwada/css-keyframer/master/LICENSE)
+## License
+
+Released under the [MIT Licence](./LICENSE)
 
 
 
-## AUTHOR
+## ChangeLog
+
+See [CHANGELOG.md](./CHANGELOG.md).
+
+
+
+## Author
 
 [tsuyoshiwada](https://github.com/tsuyoshiwada)
 
 
 
-## DEVELOPMENT
+## Development
 
 Initialization of the project.
 
@@ -229,7 +274,7 @@ $ npm run build
 ```
 
 
-## CONTRIBUTION
+## Contribution
 
 Thank you for your interest in css-keyframer.js.  
 Bugs, feature requests and comments are more than welcome in the [issues](https://github.com/tsuyoshiwada/css-keyframer/issues).
@@ -240,3 +285,4 @@ Be careful to follow the code style of the project. Run `npm test` after your ch
 All new features and changes need documentation.
 
 Thanks!
+
