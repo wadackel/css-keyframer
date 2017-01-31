@@ -1,18 +1,18 @@
-import { isArrayLike, each, indent } from "./utils";
+import { keys, isArrayLike, indent } from "./utils";
 import makeStyle from "./make-style";
-import getAnimationProp from "./get-animation-prop";
 
-export default function makeKeyframes(name, props, pretty = false) {
-  if (!name || (name && name.trim() === "") || !isArrayLike(props)) return null;
+
+const makeKeyframes = (name, prefixedKeyframes, props, pretty = false) => {
+  if (!name || (name && name.trim() === "") || !isArrayLike(props)) {
+    return null;
+  }
 
   const eol = "\n";
-  const prefix = getAnimationProp().css.replace("animation", "");
-  const styles = [];
-
-  each(props, (values, selector) => {
+  const styles = keys(props).map(selector => {
+    const values = props[selector];
     let selectorString = selector;
 
-    if (typeof selector === "number") {
+    if (typeof selector === "number" || /^\d+$/.test(selector)) {
       const maxIndex = props.length - 1;
 
       if (selector === 0) {
@@ -20,21 +20,21 @@ export default function makeKeyframes(name, props, pretty = false) {
       } else if (selector === maxIndex) {
         selectorString = "100%";
       } else {
-        selectorString = `${selector / maxIndex * 100}%`;
+        selectorString = `${parseInt(selector, 10) / maxIndex * 100}%`;
       }
     }
 
-    const styleString = makeStyle(selectorString, values, pretty);
-    styles.push(styleString);
+    return makeStyle(selectorString, values, pretty);
   });
 
-  if (pretty) {
-    return [
-      `@${prefix}keyframes ${name} {`,
+  return pretty
+    ? [
+      `@${prefixedKeyframes} ${name} {`,
       indent(styles.join(eol + eol), 2),
       "}"
-    ].join(eol);
-  }
+    ].join(eol)
+    : `@${prefixedKeyframes} ${name}{${styles.join("")}}`;
+};
 
-  return `@${prefix}keyframes ${name}{${styles.join("")}}`;
-}
+
+export default makeKeyframes;

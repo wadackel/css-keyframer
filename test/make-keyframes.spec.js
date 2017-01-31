@@ -12,8 +12,9 @@ describe("makeKeyframes()", () => {
     assert(makeKeyframes("hoge", 123) == null);
   });
 
+
   it("Should be make keyframes string", () => {
-    assert(makeKeyframes("hoge", {
+    assert(makeKeyframes("hoge", "keyframes", {
       from: {
         borderRadius: "50%",
         color: "#000"
@@ -22,25 +23,26 @@ describe("makeKeyframes()", () => {
         "border-radius": 0,
         color: "#fff"
       }
-    }) === "@-webkit-keyframes hoge{from{border-radius: 50%;color: #000;}to{border-radius: 0;color: #fff;}}");
+    }) === "@keyframes hoge{from{border-radius: 50%;color: #000;}to{border-radius: 0;color: #fff;}}");
 
-    assert(makeKeyframes("fuga", {
+    assert(makeKeyframes("fuga", "keyframes", {
       "0%": { backgroundColor: "#f00" },
       "50%": { backgroundColor: "#0f0" },
       "100%": { backgroundColor: "#00f" }
-    }) === "@-webkit-keyframes fuga{0%{background-color: #f00;}50%{background-color: #0f0;}100%{background-color: #00f;}}");
+    }) === "@keyframes fuga{0%{background-color: #f00;}50%{background-color: #0f0;}100%{background-color: #00f;}}");
 
-    assert(makeKeyframes("hoge", [
+    assert(makeKeyframes("hoge", "keyframes", [
       { color: "#fff" },
       { color: "#0ff" },
       { color: "#0f0" },
       { color: "#ff0" },
       { color: "#fff" }
-    ]) === "@-webkit-keyframes hoge{0%{color: #fff;}25%{color: #0ff;}50%{color: #0f0;}75%{color: #ff0;}100%{color: #fff;}}");
+    ]) === "@keyframes hoge{0%{color: #fff;}25%{color: #0ff;}50%{color: #0f0;}75%{color: #ff0;}100%{color: #fff;}}");
   });
 
+
   it("Shoud be make pretty keyframes string", () => {
-    assert(makeKeyframes("fuga", {
+    assert(makeKeyframes("fuga", "keyframes", {
       from: {
         top: 0,
         left: 0
@@ -50,7 +52,7 @@ describe("makeKeyframes()", () => {
         left: "50%"
       }
     }, true) === [
-      "@-webkit-keyframes fuga {",
+      "@keyframes fuga {",
       "  from {",
       "    top: 0;",
       "    left: 0;",

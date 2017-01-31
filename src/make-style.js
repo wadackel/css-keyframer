@@ -1,24 +1,21 @@
 import isPlainObject from "is-plain-object";
-import paramCase from "param-case";
-import cssVendor from "css-vendor";
-import { each, indent } from "./utils";
+import hyphenateStyleName from "hyphenate-style-name";
+import { keys, indent } from "./utils";
 
-export default function makeStyle(selector, props, pretty = false) {
+
+const makeStyle = (selector, props, pretty = false) => {
   if (!selector || (selector && selector.trim() === "") || !isPlainObject(props)) {
     return null;
   }
 
-  const styles = [];
+  const styles = keys(props).map(key =>
+    `${hyphenateStyleName(key)}: ${props[key]};`
+  );
 
-  each(props, (value, key) => {
-    const prop = cssVendor.supportedProperty(paramCase(key));
-    if (prop === false) return false;
-    styles.push(`${prop}: ${value};`);
-  });
+  return pretty
+    ? `${selector} {\n${indent(styles.join("\n"), 2)}\n}`
+    : `${selector}{${styles.join("")}}`;
+};
 
-  if (pretty) {
-    return `${selector} {\n${indent(styles.join("\n"), 2)}\n}`;
-  }
 
-  return `${selector}{${styles.join("")}}`;
-}
+export default makeStyle;

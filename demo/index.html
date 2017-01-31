@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta name="format-detection" content="telephone=no,address=no,email=no">
-  <meta name="description" content="">
+  <meta name="description" content="Dynamic css animation keyframes Manipulation library.">
   <title>css-keyframer.js</title>
   <link rel="shortcut icon" href="./images/favicon.ico">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/tomorrow-night-eighties.min.css">
@@ -21,8 +21,7 @@
     </div>
     <div class="row">
       <div class="col">
-        <pre><code class="javascript" data-title="Sample source">var animationProp = CSSKeyframer.animationProp.js;
-var keyframer = new CSSKeyframer();
+        <pre><code class="javascript" data-title="Sample source">var keyframer = new CSSKeyframer();
 
 keyframer.register("spin", [
   { transform: "rotate(0deg)", borderRadius: "0" },
@@ -44,11 +43,11 @@ keyframer.register("colors", [
   { backgroundColor: "#ff5722" }
 ]);
 
-document.querySelector(".element").style[animationProp] = "spin 1500ms linear infinite";
-document.querySelector(".element__inner").style[animationProp] = "colors 4000ms linear infinite";</code></pre>
+document.querySelector(".element").style[keyframer.animationProp.js] = "spin 1500ms linear infinite";
+document.querySelector(".element__inner").style[keyframer.animationProp.js] = "colors 4000ms linear infinite";</code></pre>
         <pre><code class="html" data-title="Results">&lt;!-- Following style tag will be added in the head. --&gt;
-&lt;style type=&quot;text/css&quot; data-keyframe=&quot;spin&quot;&gt;@keyframes spin{0%{transform: rotate(0deg);border-radius: 0;}25%{transform: rotate(72deg);border-radius: 50%;}50%{transform: rotate(144deg);border-radius: 0;}75%{transform: rotate(216deg);border-radius: 50%;}100%{transform: rotate(360deg);border-radius: 0;}}&lt;/style&gt;
-&lt;style type=&quot;text/css&quot; data-keyframe=&quot;colors&quot;&gt;@keyframes colors{0%{background-color: #e53935;}12.5%{background-color: #ad1457;}25%{background-color: #3f51b5;}37.5%{background-color: #0097a7;}50%{background-color: #00897b;}62.5%{background-color: #7cb342;}75%{background-color: #ffeb3b;}87.5%{background-color: #ff9800;}100%{background-color: #ff5722;}}&lt;/style&gt;</code></pre>
+&lt;style type=&quot;text/css&quot; data-keyframes=&quot;spin&quot;&gt;@keyframes spin{0%{transform: rotate(0deg);border-radius: 0;}25%{transform: rotate(72deg);border-radius: 50%;}50%{transform: rotate(144deg);border-radius: 0;}75%{transform: rotate(216deg);border-radius: 50%;}100%{transform: rotate(360deg);border-radius: 0;}}&lt;/style&gt;
+&lt;style type=&quot;text/css&quot; data-keyframes=&quot;colors&quot;&gt;@keyframes colors{0%{background-color: #e53935;}12.5%{background-color: #ad1457;}25%{background-color: #3f51b5;}37.5%{background-color: #0097a7;}50%{background-color: #00897b;}62.5%{background-color: #7cb342;}75%{background-color: #ffeb3b;}87.5%{background-color: #ff9800;}100%{background-color: #ff5722;}}&lt;/style&gt;</code></pre>
       </div>
       <div class="col">
         <pre><code class="html" data-title="HTML">&lt;div class=&quot;element&quot;&gt;
@@ -87,7 +86,6 @@ document.querySelector(".element__inner").style[animationProp] = "colors 4000ms 
     hljs.initHighlightingOnLoad();
 
     document.addEventListener("DOMContentLoaded", function() {
-      var animationProp = CSSKeyframer.animationProp.js;
       var keyframer = new CSSKeyframer();
 
       keyframer.register("spin", [
@@ -110,8 +108,8 @@ document.querySelector(".element__inner").style[animationProp] = "colors 4000ms 
         { backgroundColor: "#ff5722" }
       ]);
 
-      document.querySelector(".element").style[animationProp] = "spin 1500ms linear infinite";
-      document.querySelector(".element__inner").style[animationProp] = "colors 4000ms linear infinite";
+      document.querySelector(".element").style[keyframer.animationProp.js] = "spin 1500ms linear infinite";
+      document.querySelector(".element__inner").style[keyframer.animationProp.js] = "colors 4000ms linear infinite";
     }, false);
   </script>
 </body>

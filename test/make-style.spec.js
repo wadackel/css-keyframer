@@ -16,28 +16,42 @@ describe("makeStyle()", () => {
     assert(makeStyle(".hoge") == null);
   });
 
+
   it("Should be make style string", () => {
     assert(makeStyle(".hoge", {
       color: "#000",
       borderRadius: "50%",
-      top: 0
-    }) === ".hoge{color: #000;border-radius: 50%;top: 0;}");
+      top: 0,
+      WebkitUserSelect: "none",
+      MozTransition: "200ms ease-out"
+    }) === [
+      ".hoge{",
+      "color: #000;",
+      "border-radius: 50%;",
+      "top: 0;",
+      "-webkit-user-select: none;",
+      "-moz-transition: 200ms ease-out;",
+      "}"
+    ].join(""));
 
     assert(makeStyle(".hoge", {
       fuga: "hoge-fuga"
-    }) === ".hoge{}");
+    }) === ".hoge{fuga: hoge-fuga;}");
   });
+
 
   it("Should be make pretty style string", () => {
     assert(makeStyle(".fuga", {
       width: "50px",
       height: "50px",
-      "border-radius": "20%"
+      "border-radius": "20%",
+      MozTransform: "rotate(0deg)"
     }, true) === [
       ".fuga {",
       "  width: 50px;",
       "  height: 50px;",
       "  border-radius: 20%;",
+      "  -moz-transform: rotate(0deg);",
       "}"
     ].join("\n"));
   });

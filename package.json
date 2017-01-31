@@ -7,7 +7,7 @@
     "start": "npm run watch & npm run demo",
     "test": "npm run lint && npm run karma",
     "build": "npm run build:js && npm run demo:build",
-    "build:js": "NODE_ENV=production rollup -i src/index.js -o css-keyframer.js -c && uglifyjs --compress --mangle -o css-keyframer.min.js --comments -- css-keyframer.js",
+    "build:js": "NODE_ENV=production rollup -i src/index.js -o css-keyframer.js -c && uglifyjs -c -m -o css-keyframer.min.js --comments -- css-keyframer.js",
     "watch": "npm run watch:js & npm run watch:test",
     "watch:js": "onchange 'src/**/*.js' -- npm run build:js",
     "watch:test": "onchange 'test/**/*.js' -- npm run karma",
@@ -35,11 +35,10 @@
   "author": "tsuyoshiwada",
   "license": "MIT",
   "dependencies": {
-    "css-vendor": "^0.3.8",
-    "is-plain-object": "^2.0.1",
-    "object-assign": "^4.1.1",
-    "param-case": "^2.1.0",
-    "pascal-case": "^2.0.0"
+    "exenv": "^1.2.1",
+    "hyphenate-style-name": "^1.0.2",
+    "inline-style-prefixer": "^2.0.5",
+    "is-plain-object": "^2.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
