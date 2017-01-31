@@ -44,7 +44,7 @@ class CSSKeyframer {
 
     return makeKeyframes(
       this.getPrefixedName(name),
-      this.prefixer.prefixedKeyframes,
+      this.prefixer.prefixedKeyframes || "keyframes",
       prefixedKeyframes,
       this.options.pretty
     );
