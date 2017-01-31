@@ -5,7 +5,7 @@
  *
  * @author tsuyoshiwada
  * @license MIT
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 (function (global, factory) {
@@ -2272,7 +2272,7 @@ var CSSKeyframer = function () {
         prefixedKeyframes[selector] = _this.prefixer.prefix(keyframes[selector]);
       });
 
-      return makeKeyframes(this.getPrefixedName(name), this.prefixer.prefixedKeyframes, prefixedKeyframes, this.options.pretty);
+      return makeKeyframes(this.getPrefixedName(name), this.prefixer.prefixedKeyframes || "keyframes", prefixedKeyframes, this.options.pretty);
     }
   }, {
     key: "getKeyframesStylesheet",
