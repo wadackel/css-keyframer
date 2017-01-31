@@ -1,3 +1,9 @@
+## 1.0.1 (2017-02-01)
+
+* Fix a bug that `keyframer.animationProp.(js | css)` becomes undefined.
+
+
+
 ## 1.0.0 (2017-01-31)
 
 ### New features
