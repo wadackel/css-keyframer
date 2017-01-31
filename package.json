@@ -1,6 +1,6 @@
 {
   "name": "css-keyframer",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Dynamic css animation keyframes Manipulation library.",
   "main": "css-keyframer.js",
   "scripts": {
